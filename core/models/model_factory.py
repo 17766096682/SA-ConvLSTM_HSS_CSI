@@ -73,7 +73,7 @@ class Model(object):
                                      ground_truth[:, 1:])
 
         hss_csi_score = HSS_CSI_Score(next_frames, ground_truth[:, 1:])
-        loss_gen = loss_l2 + (0.01 - 0.01 * hss_csi_score) #这里让hss_csi_score越接近1越好
+        loss_gen = loss_l2 + 0.01 * (1 - hss_csi_score)  # 这里让hss_csi_score越接近1越好
         loss_gen.backward()
         self.optimizer.step()
 
