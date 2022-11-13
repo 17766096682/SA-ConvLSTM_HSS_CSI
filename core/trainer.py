@@ -12,10 +12,10 @@ from scipy.linalg import sqrtm
 
 
 def train(model, ims, real_input_flag, configs, itr):
-    _, loss_l1, loss_l2 = model.train(ims, real_input_flag, itr)
+    _, loss_l1, loss_l2,hss_csi_score = model.train(ims, real_input_flag, itr)
     if itr % configs.display_interval == 0:
         print('itr: ' + str(itr),
-              'training L1 loss: ' + str(loss_l1), 'training L2 loss: ' + str(loss_l2))
+              'training L1 loss: ' + str(loss_l1), 'training L2 loss: ' + str(loss_l2)+'hss_csi_score: '+str(hss_csi_score))
 
 
 def test(model, test_input_handle, configs, itr):

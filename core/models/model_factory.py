@@ -73,7 +73,7 @@ class Model(object):
                                      ground_truth[:, 1:])
 
         hss_csi_score = HSS_CSI_Score(next_frames, ground_truth[:, 1:])
-        loss_gen = loss_l2 + (1-0.01 * hss_csi_score)
+        loss_gen = loss_l2 + (0.01 - 0.01 * hss_csi_score) #这里让hss_csi_score越接近1越好
         loss_gen.backward()
         self.optimizer.step()
 
@@ -82,7 +82,7 @@ class Model(object):
             # self.scheduler_F.step()
             # self.scheduler_D.step()
             print('Lr decay to:%.8f', self.optimizer.param_groups[0]['lr'])
-        return next_frames, loss_l1.detach().cpu().numpy(), loss_l2.detach().cpu().numpy()
+        return next_frames, loss_l1.detach().cpu().numpy(), loss_l2.detach().cpu().numpy(), hss_csi_score
 
     def test(self, data, mask):
         frames = data
