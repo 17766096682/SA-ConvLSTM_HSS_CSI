@@ -83,5 +83,3 @@ def reshape_patch_tensor(img_tensor, patch_size):
 
 
 
-
-
