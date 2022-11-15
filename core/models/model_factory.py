@@ -82,7 +82,7 @@ class Model(object):
             # self.scheduler_F.step()
             # self.scheduler_D.step()
             print('Lr decay to:%.8f', self.optimizer.param_groups[0]['lr'])
-        return next_frames, loss_l1.detach().cpu().numpy(), loss_l2.detach().cpu().numpy(), hss_csi_score
+        return next_frames, loss_l1.detach().cpu().numpy(), loss_l2.detach().cpu().numpy(), hss_csi_score.detach().cpu().numpy()
 
     def test(self, data, mask):
         frames = data
